@@ -1,17 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import _ from 'lodash';
+import React,{Component} from 'react';
+import ReactDOM from 'react-dom';
+import YTSearch from 'youtube-api-search';
+import './style/style.css'
+import SearchBar from './Components/Search_Bar';
+import VideoList from './Components/Video_list';
+import VideoDetail from './Components/Video_detail';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const API_Key = 'AIzaSyDfNsCmysZITos8NE9FBi7O9WobiFesj9c';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state={videos:[],selectedVideo:null};
+
+    this.videoSearch('Kun faya kun');
+  }
+
+  videoSearch(term){
+    YTSearch({key:API_Key,term:term}, (videos) => {
+      this.setState({videos:videos,selectedVideo:videos[0]});
+    });
+  }
+
+  render(){
+      const videoSearch= _.debounce((term) => {this.videoSearch(term)},300);
+
+      return (
+       <div>
+        <SearchBar onSearchTermChange = {videoSearch} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList
+         OnVideoSelect= {selectedVideo=>this.setState({selectedVideo})}
+         videos={this.state.videos} />
+       </div>
+     );
+    }
+  }
+//}
+
+
+ReactDOM.render(<App />, document.querySelector('#root'));

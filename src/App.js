@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+// import _ from 'lodash';
+// import React,{Component} from 'react';
+// import ReactDOM from 'react-dom';
+// import YTSearch from 'youtube-api-search';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// import SearchBar from './Components/Search_Bar';
+// import VideoList from './Components/Video_list';
+// import VideoDetail from './Components/Video_detail';
 
-export default App;
+// const API_Key = 'AIzaSyDfNsCmysZITos8NE9FBi7O9WobiFesj9c';
+
+
+
+// class App extends Component {
+//   constructor(props) {
+//     super(props);
+
+//     this.state={videos:[],selectedVideo:null};
+
+//     this.videoSearch('Kun faya kun');
+//   }
+
+//   videoSearch(term){
+//     YTSearch({key:API_Key,term:term}, (videos) => {
+//       this.setState({videos:videos,selectedVideo:videos[0]});
+//     });
+//   }
+
+//   render(){
+//       const videoSearch= _.debounce((term) => {this.videoSearch(term)},300);
+
+//       return (
+//        <div>
+//         <SearchBar onSearchTermChange = {videoSearch} />
+//         <VideoDetail video={this.state.selectedVideo} />
+//         <VideoList
+//          OnVideoSelect= {selectedVideo=>this.setState({selectedVideo})}
+//          videos={this.state.videos} />
+//        </div>
+//      );
+//     }
+//   }
+
+// export default App;
